@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://root:''@localhost/wtf'
+app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://user:pass@domain/database'
 app.config["SECRET_KEY"] = "xxxxxxxxxxxxxxx"
 
 db = SQLAlchemy()
@@ -45,6 +45,8 @@ def register():
 
        db.session.add(save_db)
        db.session.commit()
+       
+       return redirect(url_for('index'))
 
     return render_template('register.html')
 
